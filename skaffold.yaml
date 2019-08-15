@@ -1,0 +1,16 @@
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+  artifacts:
+  - image: sunil/skaffold-service
+    context: ./skaffold-service
+    jibMaven: {}
+  - image: sunil/skaffold-app
+    context: ./skaffold-app
+    jibMaven: {}
+deploy:
+  kubectl:
+    manifests:
+    - ./skaffold-service/k8s*.yaml
+    - ./skaffold-app/k8s*.yaml
+
